@@ -1,24 +1,63 @@
-// import React,{useState,useEffect} from "react";
-// function App(){
-//   const [formData,setFormData]=useState({
-//     name:"",
-//     email:"",
-//     password:""
-//   });
-// //useEffect
-// useEffect(()=>{
-//    console.log("form updated",formData)
-// },[formData])
-
-// }
+import React,{useState,useEffect} from 'react'
 
 
 
-import React,{useState,useEffect} from "react";
+
+
 const App = () => {
+  const[formData,setformData]=useState({
+    name:"",
+    email:"",
+    password:""
+  })
+
+  useEffect(()=>{
+ console.log("form data update",formData);
+  },[formData])
+
+  const handleChange=(e)=>{
+   setformData({
+    ...formData,
+    [e.target.name]:e.target.value,
+   })
+  }
+
+const handleSubmit=(e)=>{
+   e.preventDefault();
+   alert("registration successful");
+   console.log(formData);
+}
+
+
   return (
     <div>
-      <form action=""></form>
+      <form onSubmit = {handleSubmit}>
+        <input type ="text"
+        name = "name"
+        placeholder='Enter your name'
+        value = {formData.name}
+        onChange={handleChange}
+          />
+        <br/>  
+        <br/>
+        <input type="email"
+        name='email'
+        placeholder="Enter yout email"
+         value = {formData.email}
+         onChange={handleChange}
+          />
+          <br/>
+          <br/>
+        <input type='password'
+        name='password'
+        placeholder='Enter your password'
+        value = {formData.password}
+        onChange={handleChange}
+        />  
+        <br/>
+        <button type='submit'>Registration</button>
+
+      </form>
     </div>
   )
 }
